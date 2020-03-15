@@ -27,22 +27,25 @@ class TaskRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-    // /**
-    //  * @return Task[] Returns an array of Task objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    
+    
+    /**
+    * @return Task[] Returns an array of Task objects
+    */
+    
+    public function findByCustomValue($value)
     {
         return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('t.name LIKE :val OR c.name LIKE :val')
+            ->leftJoin('t.client', 'c')
+            ->setParameter('val', '%'.$value.'%')
             ->orderBy('t.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Task

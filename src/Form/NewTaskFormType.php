@@ -14,7 +14,6 @@ class NewTaskFormType extends AbstractType
         $builder
             ->add('name')
             ->add('details')
-            ->add('done_date')
             ->add('create_date')
             ->add('category')
             ->add('client')

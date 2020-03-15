@@ -23,6 +23,16 @@ updateTask:
     requirements: 
         page: '\d+'
 
+removeTask:
+    path: /removeTask/{id}
+    defaults: { _controller: 'App\Controller\TaskController::removeAction'}
+    requirements:
+        page: '\d+'
+
+searchAction:
+    path: /search
+    defaults: { _controller: 'App\Controller\TaskController::searchAction' }
+
 test:
     path: /test
     defaults: { _controller: 'App\Controller\TaskController::test' }
