@@ -79,16 +79,5 @@ class TaskController extends Controller
         ]);
     }
 
-    public function test()
-    {
-        $task = $this->getDoctrine()
-            ->getRepository(Task::class)
-            ->find(1);
-        $create_date = $task->getCreateDate();
-        
-        return $this->render('task/task_test.html.twig', [
-            'task'=>$task,
-            'create_date'=>$create_date,
-        ]);
-    }
+    
 }
