@@ -18,7 +18,8 @@ class TaskController extends Controller
         $tasks = $task_repo->findAllOrderedByNewest();
         
         return $this->render('task/task_list.html.twig', [
-            'tasks'=>$tasks
+            'tasks' => $tasks,
+            'searchValue' => '',
         ]);
     }
 
@@ -36,6 +37,7 @@ class TaskController extends Controller
         }
         return $this->render('task/task_add.html.twig', [
             'newTaskForm'=>$form->createView(),
+            'searchValue' => '',
         ]);
     }
 
@@ -56,6 +58,7 @@ class TaskController extends Controller
         
         return $this->render('task/task_update.html.twig', [
             'newTaskForm'=>$form->createView(),
+            'searchValue' => '',
         ]);
     }
 
@@ -73,14 +76,15 @@ class TaskController extends Controller
 
     public function searchAction(Request $request)
     {
+        $searchValue = $request->query->get('value');
         $tasks = $this->getDoctrine()
             ->getRepository(Task::class)
-            ->findByCustomValue($request->query->get('value'));
+            ->findByCustomValue($searchValue);
         
         return $this->render('task/task_list.html.twig', [
-            'tasks'=>$tasks
+            'tasks' => $tasks,
+            'searchValue' => $searchValue,
         ]);
     }
 
-    
 }

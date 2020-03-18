@@ -28,7 +28,12 @@
                             </li>
                         </ul>
                         <form action="{{path('searchAction')}}" class="form-inline mt-2 mt-md-0">
-                            <input class="form-control mr-sm-2" type="text" name="value" placeholder="Search" aria-label="Search">
+                            {% if (searchValue) %}
+                                <input class="form-control mr-sm-2" type="text" name="value" placeholder="{{searchValue}}" aria-label="Search">
+                            {% else %}
+                                <input class="form-control mr-sm-2" type="text" name="value" placeholder="Search" aria-label="Search">
+                            {% endif %}
+                            
                             <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
                         </form>
                     </div>
