@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TaskRepository")
@@ -18,11 +19,31 @@ class Task
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *      message = "Ingrese un nombre"
+     * )
+     * @Assert\Type("string")
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 255,
+     *      minMessage = "Ingrese un nombre para la tarea",
+     *      maxMessage = "El maximo de caracteres es 255",
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *      message = "Ingrese una descripción"
+     * )
+     * @Assert\Type("string")
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 255,
+     *      minMessage = "Ingrese un nombre para la tarea",
+     *      maxMessage = "El maximo de caracteres es 255",
+     * )
      */
     private $details;
 
@@ -39,12 +60,14 @@ class Task
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="tasks")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $category;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="tasks")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $client;
 

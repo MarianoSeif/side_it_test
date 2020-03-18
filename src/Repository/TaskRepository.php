@@ -36,8 +36,9 @@ class TaskRepository extends ServiceEntityRepository
     public function findByCustomValue($value)
     {
         return $this->createQueryBuilder('t')
-            ->andWhere('t.name LIKE :val OR c.name LIKE :val')
+            ->andWhere('t.name LIKE :val OR t.details LIKE :val OR c.name LIKE :val OR cat.name LIKE :val')
             ->leftJoin('t.client', 'c')
+            ->leftJoin('t.category', 'cat')
             ->setParameter('val', '%'.$value.'%')
             ->orderBy('t.id', 'ASC')
             ->setMaxResults(10)

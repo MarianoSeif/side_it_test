@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use \Date;
 use App\Entity\Task;
 use App\Form\NewTaskFormType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -24,15 +25,17 @@ class TaskController extends Controller
     public function addAction(EntityManagerInterface $em, Request $request)
     {
         $form = $this->createForm(NewTaskFormType::class);
+        
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
             $task = $form->getData();
+            $task->setCreateDate($form['fechaCreacion']->getData());
             $em->persist($task);
             $em->flush();
             return $this->redirectToRoute('listTask');
         }
         return $this->render('task/task_add.html.twig', [
-            'newTaskForm'=>$form->createView()
+            'newTaskForm'=>$form->createView(),
         ]);
     }
 
@@ -52,7 +55,7 @@ class TaskController extends Controller
         }
         
         return $this->render('task/task_update.html.twig', [
-            'newTaskForm'=>$form->createView()
+            'newTaskForm'=>$form->createView(),
         ]);
     }
 
