@@ -8,7 +8,9 @@ class MainController extends Controller
 {
     public function index()
     {
-        return $this->render('index.html.twig');
+        return $this->render('index.html.twig', [
+            'searchValue' => '',
+        ]);
         
     }
 }

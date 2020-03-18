@@ -58,6 +58,7 @@ class TaskController extends Controller
         
         return $this->render('task/task_update.html.twig', [
             'newTaskForm'=>$form->createView(),
+            'createdAt'=>$task->getStringCreateDate(),
             'searchValue' => '',
         ]);
     }

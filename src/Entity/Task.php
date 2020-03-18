@@ -147,4 +147,9 @@ class Task
 
         return $this;
     }
+
+    public function getStringCreateDate()
+    {
+        return $this->getCreateDate()->format('Y-m-d');
+    }
 }

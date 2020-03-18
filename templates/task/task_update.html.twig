@@ -5,7 +5,12 @@
 
     <h3>Editar Tarea</h3>
     {{ form_start(newTaskForm, {'attr': {'novalidate': 'novalidate'}})}}
-        {{ form_widget(newTaskForm)}}
+        {{ form_row(newTaskForm.name) }}
+        {{ form_row(newTaskForm.details) }}        
+        {{ form_row(newTaskForm.fechaCreacion, {'value':  createdAt  }) }}
+        {{ form_row(newTaskForm.category) }}
+        {{ form_row(newTaskForm.client) }}        
+        
         <button class="btn btn-primary btn-lg" type="submit" formmethod="post"><i class="fa fa-save"></i> Guardar</button>
     {{ form_end(newTaskForm) }}
     <br>
