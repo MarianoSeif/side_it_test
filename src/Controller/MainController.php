@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use App\Repository\BlmozoRepository;
 
 class MainController extends Controller
 {
@@ -12,5 +13,14 @@ class MainController extends Controller
             'searchValue' => '',
         ]);
         
+    }
+
+    public function listarMozos(BlmozoRepository $blmozoRepository)
+    {
+    	$mozos = $blmozoRepository->getMozoConSueldo();
+    	dump($mozos);
+    	die();
+
+    	return 0;
     }
 }

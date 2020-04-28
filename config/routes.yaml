@@ -36,3 +36,7 @@ searchAction:
 test:
     path: /test
     defaults: { _controller: 'App\Controller\TaskController::test' }
+
+listarMozos:
+    path: /listarmozos
+    defaults: { _controller: 'App\Controller\MainController::listarMozos' }
